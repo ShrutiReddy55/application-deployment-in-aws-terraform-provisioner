@@ -15,17 +15,18 @@ resource "aws_instance" "myserver" {
    # File provisioner to copy a file from local to the remote EC2 instance
    provisioner "file" {
     source      = "../Flaskapplication/app.py"  # Replace with the path to your local file
-    destination = "/root/assignment/Flaskapplication/app.py"  # Replace with the path on the remote instance
+    destination = "/home/ubuntu/Flaskapplication/app.py"  # Replace with the path on the remote instance
    }
 
    provisioner "remote-exec" {
     inline = [
       "echo 'Hello from the remote instance'",
-      "sudo apt update -y",  # Update package lists (for ubuntu)
-      "sudo apt-get install -y python3-pip",  # Example package installation
-      "cd /home/ubuntu",
-      "sudo pip3 install flask",
-      "sudo python3 app.py",
+      "sudo apt update -y",
+      "sudo apt-get install -y python3-pip",
+      "mkdir -p /home/ubuntu/Flaskapplication",
+      "pip3 install --user flask",
+      "cd /home/ubuntu/Flaskapplication",
+      "nohup python3 app.py > app.log 2>&1 &"
     ]
    }
 }
