@@ -1,4 +1,4 @@
-resource "aws_instance" "server" {
+resource "aws_instance" "myserver" {
   ami                    = var.ami_id
   instance_type          = var.instance_type
   key_name      = aws_key_pair.example.key_name
