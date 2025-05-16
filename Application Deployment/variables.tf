@@ -5,10 +5,12 @@ variable "instance_type" {
 
 variable "ami_id" {
     description = "Value for ami-id"
+    default = "ami-0ebdd29f839a16ac6"
 }
 
 variable "key_name" {
     description = "Value for Key name"
+    default = "keypair"
 }
 
 variable "sg-name" {
